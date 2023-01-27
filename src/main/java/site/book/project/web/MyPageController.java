@@ -19,6 +19,7 @@ import site.book.project.domain.User;
 import site.book.project.dto.BookCommentReadDto;
 import site.book.project.dto.BookWishDto;
 import site.book.project.dto.UserModifyDto;
+import site.book.project.dto.UserProfileDto;
 import site.book.project.dto.UserSecurityDto;
 import site.book.project.repository.UserRepository;
 import site.book.project.service.BookCommentService;
@@ -73,10 +74,11 @@ public class MyPageController {
     
     // 못함
     @PostMapping("/myPage/file")
-    public String filemodify(@AuthenticationPrincipal UserSecurityDto  userSecurityDto,
+    public String filemodify(@AuthenticationPrincipal UserSecurityDto  userSecurityDto, UserProfileDto dto,
                             @RequestParam("filePath") MultipartFile file) throws IllegalStateException, IOException {
 
-        userService.modifyUserImage(userSecurityDto.getId(), file);
+    	log.info("FFFFFilePath={}",file.getOriginalFilename());
+        userService.modifyUserImage(userSecurityDto.getId(), dto, file);
         
         
         

@@ -12,13 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import groovy.util.logging.Slf4j;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import site.book.project.dto.UserModifyDto;
+import site.book.project.dto.UserProfileDto;
 
+@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -86,9 +89,10 @@ public class User {
         return this;
 }
     
-    public User updateImage(String fileName, String filePath) {
-        this.fileName =fileName;
+    public User updateImage(String fileName, String filePath, UserProfileDto user) {
+        this.fileName = fileName;
         this.filePath = filePath;
+        this.userImage = filePath;
         
         return this;
     }
@@ -101,4 +105,11 @@ public class User {
         return this;
     }
     
+    public User updateProfileImage(UserProfileDto user) {
+        //this.nickName = user.getNickName();
+        this.userImage = "/images/"+user.getUserImage();
+       //this. = user.getPostIntro();
+        return this;
+    }
+   
 }

@@ -31,7 +31,7 @@
         <div class="col-2 m-4 p-2" style="height:800px;">
                 <div class="card" align="left" style="margin:20px; width: 200px; "><!-- 프로필  -->
 
-                    <div>
+                  <div>
                          <img th:src="${ user.userImage}"  alt="..."  width="200px" height="280px" class="img-fluid rounded-start">
                     </div>
                     <form name="userimageModify" id="userimageModify" enctype="multipart/form-data"  action="/myPage/file" method="post">
@@ -39,7 +39,7 @@
                             <span>프로필</span>
                             <img style="width: 15px; height: 15px;" alt="" th:src="@{ https://cdn-icons-png.flaticon.com/512/738/738853.png }">
                          </label >
-                         <input type="file" id="filePath" name="filePath"  style="display: none;" accept="image/jpg, image/png" > 
+                         <input type="file" id="filePath" name="filePath"  style="display: none;" > 
                          
                          <label for="imageModify" class="btn btn-light">
                             <img style="width: 15px; height: 15px;" alt="" th:src="@{ https://cdn-icons-png.flaticon.com/512/738/738853.png }">
@@ -47,7 +47,6 @@
                          <input  type="button" id="imageModify" name="imageModify" style="display: none;"  > 
 
                     </form>
-                    
               <a class="btn btn-outline-secondary" th:href="@{ /post/list?postWriter={postWriter} (postWriter = ${ user.username })}">내 블로그
               <img style="width: 18px" alt="" src="https://cdn-icons-png.flaticon.com/512/609/609803.png">  </a>
           
@@ -90,7 +89,8 @@
             </ul>
             
             
-            
+          
+
             
                    
         </div> <!-- col end -->
@@ -327,10 +327,7 @@
     <script type="text/javascript">
     
     
-    
-    
-    
-    
+
     
     
     const b = document.querySelectorAll('#bookTotal')
@@ -393,7 +390,9 @@
     
     const formFile = document.querySelector('#userimageModify')
     const btnModifyFile = document.querySelector('#imageModify')
+   
     btnModifyFile.addEventListener('click', e => {
+    	
         const result = confirm('사진 변경?')
         if(result){
             formFile.action='/myPage/file';

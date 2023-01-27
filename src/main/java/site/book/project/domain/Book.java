@@ -55,7 +55,7 @@ public class Book {
     @Column(nullable = false)
     private long isbn;
     
-    @Column(nullable = false)
+    @Column
     private String bookIntro;
     
     @Column

@@ -39,6 +39,8 @@ dependencies {
     
     // Spring Security Test
     testImplementation 'org.springframework.security:spring-security-test'
+    
+    implementation 'commons-io:commons-io:2.11.0'
 }
 
 tasks.named('test') {

@@ -1,5 +1,6 @@
 package site.book.project.web;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,9 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.engine.AttributeName;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +29,7 @@ import site.book.project.dto.PostCreateDto;
 import site.book.project.dto.PostListDto;
 import site.book.project.dto.PostReadDto;
 import site.book.project.dto.PostUpdateDto;
+import site.book.project.dto.UserProfileDto;
 import site.book.project.dto.UserSecurityDto;
 import site.book.project.service.BookService;
 import site.book.project.service.PostService;
@@ -47,12 +53,12 @@ public class PostController {
     public String list(@AuthenticationPrincipal UserSecurityDto userSecurityDto, String postWriter, Model model) {
         log.info("list()");
 //        bookService.readPostCountByAllBookId();
-     
+
         User user = null; 
         List<PostListDto> postList = new ArrayList<>();
         
         if(userSecurityDto == null) {
-             user = userService.read(postWriter);
+            user = userService.read(postWriter);
             Integer userId = user.getId();
             
            postList = postService.postDtoList(userId);
@@ -193,5 +199,54 @@ public class PostController {
         return "/post/list"; // list.html 파일
     }
 
+    
+    @PostMapping("/writepro")
+    public String writepro(Integer id, Model model, MultipartFile file) throws Exception{
+    	
+    	userService.write(id, file);
+    	
+    	model.addAttribute("message", "프로필 업데이트 완료");
+    	model.addAttribute("profileUrl", "/post/list");
+    	
+    	return "message";
+    }
+    
+    @PostMapping("/profile/imageUpdate/{id}") 
+    public String profileImageUpdate(@PathVariable("id") Integer id) throws IOException{
+    	
+    	User u = userService.read(id);
+    	
+    	
+    	entity.setUserImage
+    	
+    	 return "redirect:/post/list";
+    }
+    
+    
+//    @PostMapping("/profile/imageUpdate")
+//   public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto userSecurityDto, UserProfileDto dto, MultipartFile file) throws IllegalStateException, IOException{
+//              Integer userId = userSecurityDto.getId();
+//       log.info("!!profileDt={}",dto);
+//       dto.setId(userId);
+//        log.info("profileImageUpdate: userId={} userImage={}", dto.getId(), dto.getUserImage());
+//       userService.updateProfileImage(dto);
+//        return "redirect:/post/list";
+//    }
+    
+//    @PostMapping("/profile/imageUpdate")
+//    public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto  userSecurityDto, UserProfileDto dto,
+//                            @RequestParam("filePath") MultipartFile file) throws IllegalStateException, IOException {
+//
+//    	log.info("FFFFFilePath={}",file.getOriginalFilename());
+//
+//     
+//    	userService.modifyUserImage(userSecurityDto.getId(), dto, file);
+//        
+//        
+//        
+//        
+//        return "redirect:/post/list";
+//    }
+   
    
 }

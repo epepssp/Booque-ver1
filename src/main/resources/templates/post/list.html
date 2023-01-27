@@ -115,6 +115,22 @@
     
     </div><!-- 프로필 블록 end -->
 </div>
+
+
+ <div class="profileUpdate" id="profileUpdateBtn"><!--(예진) 프로필 변경(수정) -->
+            설정 
+        </div>
+
+        <div class="profile-img-wrap story-border" onclick="popup()">
+          <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate">
+                <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
+                <input type="file" name="userImage" id="userImage" />
+            
+                <button class="col-4 mx-2 py-3 btn border rounded-4 btn-primary" id="btnProfileUpdate">수 정</button> 
+          </form>
+            <img class="profile-image" th:src="${ user.userImage }" id="profileImage" width=100px; height=150px/>
+        </div>
+</div>
     
 <div class="col-10">
     
@@ -268,6 +284,34 @@
            });
     }
     </script>
+    
+    <!-- (예진) 프로필 수정(변경) -->
+    <script>
+    function popup(){
+        alert('안녕하세여')
+        }
+
+    // profile form HTML 요소를 찾음.
+    const form = document.querySelector('#profileForm');
+
+    // 프로필 이미지 변경 버튼 찾아서 이벤트 리스너 등록
+    const btnProfileUpdate = document.querySelector('#btnProfileUpdate');
+    btnProfileUpdate.addEventListener('click',function() {
+    	
+    	
+
+    	const result = confirm('프로필 사진을 변경하시겠습니까?');
+    	if(result) {
+    		console.log(profileImage)
+    		profileForm.action = '/post/profile/imageUpdate';
+    		profileForm.method= 'post';
+    		profileForm.submit();
+        }
+
+    });
+
+    </script>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script

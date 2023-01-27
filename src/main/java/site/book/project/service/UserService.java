@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import site.book.project.domain.User;
 import site.book.project.dto.UserModifyDto;
+import site.book.project.dto.UserProfileDto;
 import site.book.project.dto.UserRegisterDto;
 import site.book.project.dto.UserSecurityDto;
 import site.book.project.dto.UserSigninDto;
@@ -130,13 +131,14 @@ public class UserService {
         user.update(point + user.getPoint());
         userRepository.save(user);
     }
+    
     @Transactional
-    public void modifyUserImage(Integer id, MultipartFile file) throws IllegalStateException, IOException {
-      String projectPath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
+    public void modifyUserImage(Integer id, UserProfileDto dto, MultipartFile file) throws IllegalStateException, IOException {
+      String projectPath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
       
-      log.info(projectPath);
-      UUID uuid=UUID.randomUUID();
-      String fileName = uuid+"_"+file.getOriginalFilename();
+      log.info("projectPath={}",projectPath);
+    
+      String fileName = file.getOriginalFilename();
       File saveFile=new File(projectPath, fileName);
       file.transferTo(saveFile);
  //     freeSharePost.setFileName(fileName);        //생성한 파일이름을 저장해줌.
@@ -144,12 +146,12 @@ public class UserService {
 //      System.out.println(freeSharePost.toString());
  //     freeSharePost.setFilePath("/files/" + fileName);
       User user = userRepository.findById(id).get();
-      user.updateImage(fileName, "/files/" + fileName);
-      
+    user.updateProfileImage(dto);
+    log.info("i,!!!!mages + fileName={}","/images/" + fileName);
+   
+      user.updateImage(fileName, "/images/" + fileName, dto);
       
     }
-
-
 
 
     @Transactional
@@ -160,6 +162,30 @@ public class UserService {
         
         return 0;
     }
+    
+// // (예진) 유저 프로필 이미지 변경
+//    @Transactional
+//   public void updateProfileImage(UserProfileDto dto) {
+//        log.info("userProfileDto={}", dto);
+//       log.info("changeProfileImage(userId={}, userImage={})", dto.getId(), dto.getUserImage());
+//
+//        User entity = userRepository.findById(dto.getId()).get();
+//        entity.updateProfileImage(dto);
+//
+//   }
 
+
+    public void updateProfileImage(MultipartFile file) throws IllegalStateException, IOException {
+    	
+    	// 이미지 파일 저장 경로 설정
+    	String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
+    	
+    	UUID uuid = UUID.randomUUID();  // 식별자
+    	
+    	String fileName = uuid + "_" + file.getOriginalFilename();
+    	
+    	File saveFile=new File(projectPath, fileName); // saveFile: 파일 껍데기(객체) 생성 -> 경로+파일이름을 저장
+    	file.transferTo(saveFile);
+    }
 }
 

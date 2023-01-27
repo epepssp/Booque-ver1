@@ -35,6 +35,7 @@ public class PostReplyController {
     private final ReplyService replyService;
     private final UserService userService;
     private final PostService postService;
+    
 
     // 댓글 전체 리스트
     @GetMapping("/all/{postId}")
@@ -45,7 +46,7 @@ public class PostReplyController {
         
         log.info("# of list = {}", list.size());
        
-
+  
         return ResponseEntity.ok(list);
     }
 
