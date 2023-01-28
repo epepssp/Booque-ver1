@@ -232,15 +232,14 @@ public class PostController {
     	
     	
     	log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
-    	userTemp.setUserImage("/images/"+file.getOriginalFilename());  
+    	userTemp.setUserImage("/files/"+file.getOriginalFilename());  
     	log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
     		
     	userRepository.save(userTemp);
     	
     	userService.write(id, file);
     	
-    	return "redirect:/post/list";
-    	// return "redirect:"+urlTemp;
+    	return "redirect:"+urlTemp;
     }
    
   

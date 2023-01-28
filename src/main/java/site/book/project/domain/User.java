@@ -114,7 +114,7 @@ public class User {
     
     public User updateProfileImage(UserProfileDto user) {
         //this.nickName = user.getNickName();
-        this.userImage = "/images/"+user.getUserImage();
+        this.userImage = "/files/"+user.getUserImage();
        //this. = user.getPostIntro();
         return this;
     }

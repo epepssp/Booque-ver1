@@ -127,7 +127,9 @@
             
                 <button class="col-4 mx-2 py-3 btn border rounded-4 btn-primary" id="btnProfileUpdate">수 정</button> 
           </form>
-              <img class="profile-image" th:src="${ user.userImage }" id="profileImage" width=100px; height=150px/>
+          
+        	  <a th:href="@{${user.filePath}}"> 이미지 <img th:src="${ user.filePath }" width=100px; height=150px></a>
+        	  <img class="profile-image" th:src="${ user.userImage }" id="profileImage" width=100px; height=150px/>
 		</div>
 		
     	 <div onclick="down()">

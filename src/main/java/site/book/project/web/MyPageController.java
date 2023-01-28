@@ -50,9 +50,7 @@ public class MyPageController {
         List<BookWishDto> wishBookInfo = bookWishService.searchWishList(user.getId());
         List<BookCommentReadDto> commentList = bookCommentService.readByUserId(user.getId());
         
-        
-        
-        
+             
         model.addAttribute("commentList", commentList);
         model.addAttribute("wishBookInfo", wishBookInfo);
         model.addAttribute("orderList", orderList);
@@ -71,24 +69,7 @@ public class MyPageController {
         
         return "redirect:/myPage";
     }
-    
-    @PostMapping("/myPage/imageUpdate")  // update profileImage 
-    public String profileImageUpdate(Integer id, MultipartFile file) throws Exception{
-    	
-     
-    	User userTemp = userService.read(id);  // 현재 로그인 한 유저
-    	
-    	log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
-    	userTemp.setUserImage("/images/"+file.getOriginalFilename());  
-    	log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
-    	
-    	
-    	userRepository.save(userTemp);
-    	userService.write(id, file);
-    	
-    	
-    	 return "redirect:/myPage";
-    }
+ 
     
     // (은정) wish 삭제
     @PostMapping("/myPage/delete")

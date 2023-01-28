@@ -181,7 +181,7 @@ public class UserService {
     	log.info("!##id={}",id);
     	
     	// 이미지 파일 저장 경로 설정
-    	String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+    	String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
     	
     	UUID uuid = UUID.randomUUID();  // 식별자
     	
@@ -191,11 +191,15 @@ public class UserService {
     	file.transferTo(saveFile);
     	
     	User user = userRepository.findById(id).get();
-    	user.updateImage(fileName, "/images/" + fileName);
+    	//user.updateImage(fileName, "/files/" + fileName);
     	
+    	user.setFileName(fileName);
+    	user.setFilePath("/files/" + fileName);
     	
-    	//userRepository.save(user);
-    	
+    	userRepository.save(user);
+    	log.info("fileName={}", fileName);
+    	log.info("filePath={}", "/files/" + fileName);
+    	log.info("user.getUserImage ={}", user.getUserImage());
     }
 
 }
