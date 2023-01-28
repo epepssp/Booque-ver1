@@ -1,10 +1,13 @@
 package site.book.project.web;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,9 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.engine.AttributeName;
+
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +36,7 @@ import site.book.project.dto.PostReadDto;
 import site.book.project.dto.PostUpdateDto;
 import site.book.project.dto.UserProfileDto;
 import site.book.project.dto.UserSecurityDto;
+import site.book.project.repository.UserRepository;
 import site.book.project.service.BookService;
 import site.book.project.service.PostService;
 import site.book.project.service.ReplyService;
@@ -46,6 +52,7 @@ public class PostController {
     private final BookService bookService;
     private final UserService userService;
     private final ReplyService replyService;
+    private final UserRepository userRepository;
        
     
     @Transactional(readOnly = true)
@@ -200,31 +207,46 @@ public class PostController {
     }
 
     
-    @PostMapping("/writepro")
-    public String writepro(Integer id, Model model, MultipartFile file) throws Exception{
+//    @PostMapping("/profile/imageInsert")    // create profileImage 
+//    public String writepro(@AuthenticationPrincipal UserSecurityDto userSecurityDto, Model model, MultipartFile file) throws Exception{
+//    	
+//    	User user = userService.read(userSecurityDto.getId());
+//    	userService.write(user, file);
+//    	
+//    	model.addAttribute("message", "프로필 이미지 업로드 완료");
+//    	model.addAttribute("profileUrl", "/post/list");
+//    	
+//    	return "message";
+//    }
+    
+    @PostMapping("/profile/imageUpdate")  // update profileImage 
+    public String profileImageUpdate(Integer id, MultipartFile file, HttpServletRequest request) throws Exception{
+    	
+    	String referer = request.getHeader("referer");
+    	log.info("CurrentUrl ={}", referer);
+    	String urlTemp = referer.toString().substring(21);
+    	log.info("urlTemp ={}", urlTemp);
+    	
+    	
+    	User userTemp = userService.read(id);  // 현재 로그인 한 유저
+    	
+    	
+    	log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
+    	userTemp.setUserImage("/images/"+file.getOriginalFilename());  
+    	log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
+    		
+    	userRepository.save(userTemp);
     	
     	userService.write(id, file);
     	
-    	model.addAttribute("message", "프로필 업데이트 완료");
-    	model.addAttribute("profileUrl", "/post/list");
-    	
-    	return "message";
+    	return "redirect:/post/list";
+    	// return "redirect:"+urlTemp;
     }
-    
-    @PostMapping("/profile/imageUpdate/{id}") 
-    public String profileImageUpdate(@PathVariable("id") Integer id) throws IOException{
-    	
-    	User u = userService.read(id);
-    	
-    	
-    	entity.setUserImage
-    	
-    	 return "redirect:/post/list";
-    }
-    
+   
+  
     
 //    @PostMapping("/profile/imageUpdate")
-//   public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto userSecurityDto, UserProfileDto dto, MultipartFile file) throws IllegalStateException, IOException{
+//   public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto userSecurityDto, UserProfileDto dto) {
 //              Integer userId = userSecurityDto.getId();
 //       log.info("!!profileDt={}",dto);
 //       dto.setId(userId);

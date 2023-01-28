@@ -72,18 +72,22 @@ public class MyPageController {
         return "redirect:/myPage";
     }
     
-    // 못함
-    @PostMapping("/myPage/file")
-    public String filemodify(@AuthenticationPrincipal UserSecurityDto  userSecurityDto, UserProfileDto dto,
-                            @RequestParam("filePath") MultipartFile file) throws IllegalStateException, IOException {
-
-    	log.info("FFFFFilePath={}",file.getOriginalFilename());
-        userService.modifyUserImage(userSecurityDto.getId(), dto, file);
-        
-        
-        
-        
-        return "redirect:/myPage";
+    @PostMapping("/myPage/imageUpdate")  // update profileImage 
+    public String profileImageUpdate(Integer id, MultipartFile file) throws Exception{
+    	
+     
+    	User userTemp = userService.read(id);  // 현재 로그인 한 유저
+    	
+    	log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
+    	userTemp.setUserImage("/images/"+file.getOriginalFilename());  
+    	log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
+    	
+    	
+    	userRepository.save(userTemp);
+    	userService.write(id, file);
+    	
+    	
+    	 return "redirect:/myPage";
     }
     
     // (은정) wish 삭제

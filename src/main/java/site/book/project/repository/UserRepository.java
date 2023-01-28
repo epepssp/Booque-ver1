@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import site.book.project.domain.User;
+import site.book.project.dto.UserProfileDto;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
@@ -18,6 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsername(String username);
     Optional<User> findByNickName(String nickname);
     Optional<User> findByEmail(String email);
+	void save(UserProfileDto dto);
     
     
     //List<User> searchByPw(@Param(value="userId") String userId, @Param(value = "password") String password);

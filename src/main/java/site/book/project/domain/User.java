@@ -12,11 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import groovy.util.logging.Slf4j;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import site.book.project.dto.UserModifyDto;
 import site.book.project.dto.UserProfileDto;
@@ -55,12 +58,15 @@ public class User {
     @Column(unique = true, nullable = false)
     private String nickName;
     
+    @Setter
     @Column(length = 1000)
     private String userImage;
     
+    @Setter
     @Column(length = 1000)
     private String fileName;
     
+    @Setter
     @Column(length = 1000)
     private String filePath;
     
@@ -89,10 +95,11 @@ public class User {
         return this;
 }
     
-    public User updateImage(String fileName, String filePath, UserProfileDto user) {
+    
+    
+    public User updateImage(String fileName, String filePath) {
         this.fileName = fileName;
         this.filePath = filePath;
-        this.userImage = filePath;
         
         return this;
     }
@@ -111,5 +118,8 @@ public class User {
        //this. = user.getPostIntro();
         return this;
     }
+
+
    
+    
 }

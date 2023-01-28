@@ -12,7 +12,7 @@ public class UserProfileDto {
     private String userImage;
     private String postIntro;
     private String nickName;
-    private String filePath;
-    private String fileName;
+   // private String filePath;
+ //   private String fileName;
    // private MultipartFile file;
 }
