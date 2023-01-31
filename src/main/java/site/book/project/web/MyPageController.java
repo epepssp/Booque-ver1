@@ -19,7 +19,7 @@ import site.book.project.domain.User;
 import site.book.project.dto.BookCommentReadDto;
 import site.book.project.dto.BookWishDto;
 import site.book.project.dto.UserModifyDto;
-import site.book.project.dto.UserProfileDto;
+
 import site.book.project.dto.UserSecurityDto;
 import site.book.project.repository.UserRepository;
 import site.book.project.service.BookCommentService;

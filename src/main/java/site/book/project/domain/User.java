@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import site.book.project.dto.UserModifyDto;
-import site.book.project.dto.UserProfileDto;
+
 
 @Slf4j
 @NoArgsConstructor
@@ -95,13 +95,6 @@ public class User {
         return this;
 }
     
-    
-//    public User updateImage(String fileName, String filePath) {
-//        this.fileName = fileName;
-//        this.filePath = filePath;
-//        
-//        return this;
-//    }
     
     public User updateProfile(UserModifyDto user) {
         this.nickName = user.getNickName();
