@@ -43,8 +43,8 @@
 
     <div class="card mx-2 my-2" style="width: 20rem; height:auto;">
         <a th:href="@{ /myPage }"> <!-- 프로필 사진 클릭하면 마이페이지로 이동 -->
-           <img th:src="${ user.userImage }" width="200" height="280" class="img-fluid rounded-start">
-        </a>
+           <span id="divProfileImage"></span><!-- (예진) 프로필 이미지-->
+        </a>     
         
         <div class="card-body" style="text-align: left;">
             <div class="border-bottom mb-2 border-dark">
@@ -56,6 +56,14 @@
             </div>
             <!-- <span style="color:gray;">전체 리뷰수</span>
             <span class="h4"><strong style="color:red;">리뷰수 합쳐야함</strong></span> -->
+            
+            <!--(예진) 프로필 이미지 업로드 폼 -->
+            <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate">
+                <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
+                <input type="file" name="file" id="file"/>
+                <div class="btn btn-outline-secondary" style="width: 40px; height: 15px;" id="btnProfileUpdate">프로필 수정</div> 
+            </form>
+            
              <br/><br/>
              
             
@@ -275,7 +283,7 @@
 
 </div> <!-- row end -->
 </div>
-
+    <script th:src="@{ /js/imageUpload.js }"></script>
     <script th:src="@{ /js/post.js }"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
