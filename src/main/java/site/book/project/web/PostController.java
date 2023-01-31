@@ -209,37 +209,37 @@ public class PostController {
     
 //    @PostMapping("/profile/imageInsert")    // create profileImage 
 //    public String writepro(@AuthenticationPrincipal UserSecurityDto userSecurityDto, Model model, MultipartFile file) throws Exception{
-//    	
-//    	User user = userService.read(userSecurityDto.getId());
-//    	userService.write(user, file);
-//    	
-//    	model.addAttribute("message", "프로필 이미지 업로드 완료");
-//    	model.addAttribute("profileUrl", "/post/list");
-//    	
-//    	return "message";
+//      
+//      User user = userService.read(userSecurityDto.getId());
+//      userService.write(user, file);
+//      
+//      model.addAttribute("message", "프로필 이미지 업로드 완료");
+//      model.addAttribute("profileUrl", "/post/list");
+//      
+//      return "message";
 //    }
     
     @PostMapping("/profile/imageUpdate")  // update profileImage 
     public String profileImageUpdate(Integer id, MultipartFile file, HttpServletRequest request) throws Exception{
-    	
-    	String referer = request.getHeader("referer");
-    	log.info("CurrentUrl ={}", referer);
-    	String urlTemp = referer.toString().substring(21);
-    	log.info("urlTemp ={}", urlTemp);
-    	
-    	
-    	User userTemp = userService.read(id);  // 현재 로그인 한 유저
-    	
-    	
-    	log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
-    	userTemp.setUserImage("/files/"+file.getOriginalFilename());  
-    	log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
-    		
-    	userRepository.save(userTemp);
-    	
-    	userService.write(id, file);
-    	
-    	return "redirect:"+urlTemp;
+        
+        String referer = request.getHeader("referer");
+        log.info("CurrentUrl ={}", referer);
+        String urlTemp = referer.toString().substring(21);
+        log.info("urlTemp ={}", urlTemp);
+        
+        
+        User userTemp = userService.read(id);  // 현재 로그인 한 유저
+        
+        
+        log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
+        userTemp.setUserImage("/files/"+file.getOriginalFilename());  
+        log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
+            
+        userRepository.save(userTemp);
+        
+        userService.write(id, file);
+        
+        return "redirect:"+urlTemp;
     }
    
   
@@ -258,10 +258,10 @@ public class PostController {
 //    public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto  userSecurityDto, UserProfileDto dto,
 //                            @RequestParam("filePath") MultipartFile file) throws IllegalStateException, IOException {
 //
-//    	log.info("FFFFFilePath={}",file.getOriginalFilename());
+//      log.info("FFFFFilePath={}",file.getOriginalFilename());
 //
 //     
-//    	userService.modifyUserImage(userSecurityDto.getId(), dto, file);
+//      userService.modifyUserImage(userSecurityDto.getId(), dto, file);
 //        
 //        
 //        

@@ -96,13 +96,12 @@ public class User {
 }
     
     
-    
-    public User updateImage(String fileName, String filePath) {
-        this.fileName = fileName;
-        this.filePath = filePath;
-        
-        return this;
-    }
+//    public User updateImage(String fileName, String filePath) {
+//        this.fileName = fileName;
+//        this.filePath = filePath;
+//        
+//        return this;
+//    }
     
     public User updateProfile(UserModifyDto user) {
         this.nickName = user.getNickName();
@@ -111,15 +110,6 @@ public class User {
                 
         return this;
     }
-    
-    public User updateProfileImage(UserProfileDto user) {
-        //this.nickName = user.getNickName();
-        this.userImage = "/files/"+user.getUserImage();
-       //this. = user.getPostIntro();
-        return this;
-    }
 
-
-   
     
 }

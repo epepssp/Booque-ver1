@@ -133,26 +133,26 @@ public class UserService {
         userRepository.save(user);
     }
     
-    @Transactional
-    public void modifyUserImage(Integer id, UserProfileDto dto, MultipartFile file) throws IllegalStateException, IOException {
-      String projectPath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
-      
-      log.info("projectPath={}",projectPath);
-    
-      String fileName = file.getOriginalFilename();
-      File saveFile=new File(projectPath, fileName);
-      file.transferTo(saveFile);
- //     freeSharePost.setFileName(fileName);        //생성한 파일이름을 저장해줌.
-      System.out.println(fileName);
-//      System.out.println(freeSharePost.toString());
- //     freeSharePost.setFilePath("/files/" + fileName);
-      User user = userRepository.findById(id).get();
-    user.updateProfileImage(dto);
-    log.info("i,!!!!mages + fileName={}","/images/" + fileName);
-   
-      user.updateImage(fileName, "/images/" + fileName);
-      
-    }
+//    @Transactional
+//    public void modifyUserImage(Integer id, UserProfileDto dto, MultipartFile file) throws IllegalStateException, IOException {
+//      String projectPath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images";
+//      
+//      log.info("projectPath={}",projectPath);
+//    
+//      String fileName = file.getOriginalFilename();
+//      File saveFile=new File(projectPath, fileName);
+//      file.transferTo(saveFile);
+// //     freeSharePost.setFileName(fileName);        //생성한 파일이름을 저장해줌.
+//      System.out.println(fileName);
+////      System.out.println(freeSharePost.toString());
+// //     freeSharePost.setFilePath("/files/" + fileName);
+//      User user = userRepository.findById(id).get();
+//    user.updateProfileImage(dto);
+//    log.info("i,!!!!mages + fileName={}","/images/" + fileName);
+//   
+//      user.updateImage(fileName, "/images/" + fileName);
+//      
+//    }
 
 
     @Transactional
@@ -203,4 +203,3 @@ public class UserService {
     }
 
 }
-

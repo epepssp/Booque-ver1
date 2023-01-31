@@ -76,13 +76,10 @@ public class MyPageController {
     public String deleteWish( Integer bookWishId) {
         
         bookWishService.deleteWish(bookWishId);
-        
-        
+              
         return "redirect:/myPage";
         
     }
-    
-    
     
     
 }
