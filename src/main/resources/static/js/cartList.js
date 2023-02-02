@@ -112,9 +112,6 @@
         
 
         
-        
-        
-        
         const buttons = document.querySelectorAll('.btnPlusMinus');
         buttons.forEach(btn => {
             
