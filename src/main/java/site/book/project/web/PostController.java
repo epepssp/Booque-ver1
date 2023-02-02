@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -219,6 +220,8 @@ public class PostController {
 //      return "message";
 //    }
     
+    @Value("${site.book.upload.path}") // (예진) 절대 경로(외부 경로) 값 주입
+    private String imageFilePath;
     
     // (예진) 프로필 이미지 업로드
     @PostMapping("/profile/imageUpdate")  
@@ -232,7 +235,7 @@ public class PostController {
         User userTemp = userService.read(id);
               
         log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
-        userTemp.setUserImage("/files/"+file.getOriginalFilename());  
+        userTemp.setUserImage("/view/"+file.getOriginalFilename());  
         log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
             
         userRepository.save(userTemp);

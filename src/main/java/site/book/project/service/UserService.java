@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -129,7 +130,6 @@ public class UserService {
     }
 
 
-
     @Transactional
     public Integer modify(UserModifyDto userModifyDto, UserSecurityDto u) {
         // 중복검사
@@ -140,28 +140,28 @@ public class UserService {
     }
 
 
+    @Value("${site.book.upload.path}") // (예진) 절대 경로(외부 경로) 값 주입
+    private String imageFilePath;
+    
     // (예진) 프로필 이미지 업로드
     public void write(Integer id, MultipartFile file) throws IllegalStateException, IOException {
-    	
-    	// 이미지 파일 저장 경로 설정
-    	String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\files";
-    	
+    	log.info("imageFilePath!@!#%@={}",imageFilePath);
     	UUID uuid = UUID.randomUUID();  // 식별자
     	
     	String fileName = uuid + "_" + file.getOriginalFilename();
-    	File saveFile=new File(projectPath, fileName); // saveFile: 파일 껍데기(객체) 생성해서 경로+파일이름 저장
+    	File saveFile=new File(imageFilePath, fileName); // saveFile: 파일 껍데기(객체) 생성해서 경로+파일이름 저장
     	file.transferTo(saveFile);
     	
     	User user = userRepository.findById(id).get();
-    	//user.updateImage(fileName, "/files/" + fileName);
     	
     	user.setFileName(fileName);
-    	user.setFilePath("/files/" + fileName);
+    	user.setFilePath(imageFilePath+"/"+fileName);
     	
     	userRepository.save(user);
     	log.info("fileName={}", fileName);
-    	log.info("filePath={}", "/files/" + fileName);
+    	log.info("filePath={}",imageFilePath+fileName);
     	log.info("user.getUserImage ={}", user.getUserImage());
     }
 
+    
 }

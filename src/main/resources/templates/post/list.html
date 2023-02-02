@@ -65,8 +65,7 @@
         <a th:href="@{ /myPage }"> <!-- 프로필 사진 클릭하면 마이페이지로 이동 -->
            <span id="divProfileImage"></span><!-- (예진) 프로필 이미지-->
         </a>       
-          
-         
+        
         <div class="card-body" style="text-align: left;">
                 <div class="border-bottom mb-2 border-dark">
                     <span class="card-title" th:text="${ '&nbsp;&nbsp;'+ user.nickName }" style="font-weight: bold;"></span>
@@ -122,12 +121,6 @@
     
     </div><!-- 프로필 블록 end -->
 </div>  
-
-       <div class="profile-img-wrap story-border">
-                  <img th:src="${ user.userImage }"  width=100px height=150px />
-                  <img th:src="${user.filePath}" width=100px height=150px />
-                  <img th:src="@{${user.filePath}}" width=100px height=150px />
-        </div>
          
 <div class="col-10">
     
