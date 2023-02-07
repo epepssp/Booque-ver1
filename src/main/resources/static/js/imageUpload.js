@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 window.addEventListener('DOMContentLoaded', () => {
     
      // (예진) 이미지 업데이트 
@@ -57,6 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
     tempImage();
        
     }
-   
+
+
   
 });

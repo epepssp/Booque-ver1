@@ -3,6 +3,9 @@
  */
 
  window.addEventListener('DOMContentLoaded', () => {
+    showNotice(); 
+     
+     
     // 댓글 목록
     readAllReplies();
     // 댓글 갯수
@@ -36,17 +39,68 @@
         
         
         axios.post('/api/reply', data)
-                .then(response => {
+                .then(response => {  
+                    console.log('댓글등록 성공 데이터');
+                    console.log(response.data);
                     alert('#  댓글 등록 성공');
                     clearInputContent();
                     readAllReplies();
                     updateReplyCount();
+                    newReplyNotion(response.data);
                 })
                 .catch(error => {
                     console.log(error);
                 });
+              
     }      
 
+    function newReplyNotion(data){
+          // const userId = document.querySelector('#userId').value;
+          // const postId = document.querySelector('#postId').value;
+           console.log('댓글등록 성공 데이터 넘어오싼');
+           console.log(data);
+                const divNo = document.querySelector('#divNo');
+                let str =+ `${data.userId}${data.postId}${data.replyId}`;
+                    divNo.innerHTML =str;
+                    
+           axios.post('/notice', data)
+           .then(response => {
+               console.log('노티스 저장성공');
+               showNotice();
+           })         
+            .catch(error => {
+                    console.log(error);
+           });
+     
+    }
+    
+    function showNotice(){
+        const userId = document.querySelector('#userId').value;
+        console.log('쇼노티스유저아이디');
+        console.log(userId);
+        
+        axios
+        .get('/showNotice/' + userId)  
+        .then(response => { updateNoticeList(response.data) } )
+        .catch(err => { console.log(err) });
+    }    
+    
+    function updateNoticeList(data){
+        console.log('리스트?');
+        console.log(data);
+        
+        const divNo = document.querySelector('#divNo');
+        let str ='';
+        
+         for (let x of data){
+             str += `<div><a href="/post/detail?postId=${ x.postId }&bookId=${ x.bookId }">`
+                  +'<img class="rounded-circle" width="25" height="25" src="' + x.userImage + '" />'
+                  +`<span class="fw-bold m-1">${x.nickName}</span>님의 새 댓글!</a></div>`;
+        }
+        
+        divNo.innerHTML = str;
+    }
+    
 
     // 댓글 목록 함수
     function readAllReplies(){

@@ -76,6 +76,7 @@ public class User {
     @Builder.Default
     private String grade = "0"; 
     
+    @Setter
     private String postIntro;
     
     @ElementCollection(fetch = FetchType.LAZY)

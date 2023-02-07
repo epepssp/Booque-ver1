@@ -88,7 +88,9 @@
             <div class="col-sm-3">
                 <input class="form-control" id="myScore" type="number" name="myScore" style="height:50px; font-size: large;" required placeholder="별점" />
             </div>
-        </div>
+            </div>
+        
+        
         <input type="hidden" id="postWriter" name="postWriter" th:value="${ #authentication.name }" readonly />
         <textarea class="summernote" id="postContent" name="postContent"></textarea>
         <input type="submit" class="w-100 btn border rounded bg-primary mb-3" value="작성완료" />
@@ -125,6 +127,8 @@
 </div><!-- 메인 블록 end -->
 
     <script th:src="@{ /js/imageUpload.js }"></script>
+
+   
 <!-- bootstrap -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

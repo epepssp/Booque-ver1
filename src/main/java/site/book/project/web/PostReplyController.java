@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import site.book.project.domain.Post;
+import site.book.project.domain.PostReply;
 import site.book.project.domain.User;
 import site.book.project.dto.PostListDto;
 import site.book.project.dto.ReplyReadDto;
@@ -52,12 +53,14 @@ public class PostReplyController {
 
     // 댓글 작성
     @PostMapping
-    public ResponseEntity<Integer> registerReply(@RequestBody ReplyRegisterDto dto) {
+    public ResponseEntity<ReplyReadDto> registerReply(@RequestBody ReplyRegisterDto dto) {
         log.info("registerReply()");
+        
+        Integer replyId =  replyService.create(dto); 
+        ReplyReadDto readDto =  replyService.readReply(replyId);
+    
 
-        Integer replyWriter = replyService.create(dto);
-
-        return ResponseEntity.ok(replyWriter);
+        return ResponseEntity.ok(readDto);
     }
     
     // 댓글 수정/삭제 모달창에 가져오기

@@ -16,6 +16,9 @@ public class ReplyReadDto {
 
     private Integer replyId;
     private Integer postId;
+    private Integer bookId;
+    private Integer userId; // postWriter id;
+    
     private String replyContent;
     private String replyWriter;
     private String userImage;
@@ -25,6 +28,8 @@ public class ReplyReadDto {
     public static ReplyReadDto fromEntity(PostReply entity) {
         return ReplyReadDto.builder().replyId(entity.getReplyId())
                 .postId(entity.getPost().getPostId())
+                .bookId(entity.getPost().getBook().getBookId())
+                .userId(entity.getPost().getUser().getId())
                 .replyWriter(entity.getReplyWriter())
                 .userImage(entity.getUser().getUserImage())
                 .replyContent(entity.getReplyContent())

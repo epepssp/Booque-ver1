@@ -43,36 +43,91 @@
 
     <div class="card mx-2 my-2" style="width: 20rem; height:auto;">
         <a th:href="@{ /myPage }"> <!-- 프로필 사진 클릭하면 마이페이지로 이동 -->
-           <span id="divProfileImage"></span><!-- (예진) 프로필 이미지-->
-        </a>     
+           <img th:src="${user.userImage}" width=200px; /><!-- (예진) 프로필 이미지-->
+        </a>   
+         
+
         
         <div class="card-body" style="text-align: left;">
             <div class="border-bottom mb-2 border-dark">
                 <span class="card-title" th:text="${ '&nbsp;&nbsp;'+ user.nickName }" style="font-weight: bold;"></span>
                 <span style="font-size: 16px;" th:text="${ '('+ user.username +')' }"></span>
+                알림<span id="notionCountSpan"></</span>
+           <span th:if="${ user.username } == ${ #authentication.name }" >
+             <img onclick="imagePop()" src="/images/edi.png" width=20px; align="right" >
+           </span>
             </div>
             <div class="mb-4">
                 <span th:text="${user.postIntro}" ></span>
             </div>
+              <span th:if="${ user.username } == ${ #authentication.name }" >
+   
+                <img onclick="pop()" src="/images/pencil.png" width=20px; align="right">
+             </span>
             <!-- <span style="color:gray;">전체 리뷰수</span>
             <span class="h4"><strong style="color:red;">리뷰수 합쳐야함</strong></span> -->
-            
-            <!--(예진) 프로필 이미지 업로드 폼 -->
-            <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate">
+                <!--(예진) 프로필 이미지 업로드 폼 -->
+      
+     
+         
+        <div class="modal" id ="imageModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate">
                 <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
                 <input type="file" name="file" id="file"/>
-                <div class="btn btn-outline-secondary" style="width: 40px; height: 15px;" id="btnProfileUpdate">프로필 수정</div> 
+              
             </form>
+      </div>
+   <div class="modal-footer">
+       
+        <button type="button" id="btnProfileUpdate" class="btn btn-primary">수정하기</button>
+      </div>
+    </div>
+  </div>
+</div>
             
              <br/><br/>
-             
-            
+          
         </div>
+ 
         
+        
+          <div class="modal" id="introModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form id="mForm">
+    <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
+    <input type="text" id="postIntro" name="postIntro" />
+    <button id="btnM">수정</button>
+ </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     
 
     <br/>
 
+        <!--  댓글 알림 보여줄 div -->
+        <div id="divNo" align="left"></div>
+
+    <br/>
+    
     </div><!-- 프로필 블록 end -->
     
     <div class="border rounded py-2 w-75 bg-light" style="text-align: center;">
@@ -294,6 +349,43 @@
     <script th:src="@{ /js/postReply.js }"></script>
     <script>
     const loginUser = document.querySelector('#rWriter').value;
+    </script>
+    
+    <script>
+   
+    
+    const dModal = document.querySelector('#imageModal');
+    const imgModal = new bootstrap.Modal(dModal);
+    function imagePop() {
+    	imgModal.show();
+    }
+    
+    const divModal = document.querySelector('#introModal');
+    const pModal = new bootstrap.Modal(divModal);
+    function pop() {
+        pModal.show();
+    }
+    
+    
+    const mForm = document.querySelector('#mForm');
+    const btnM = document.querySelector('#btnM');
+    
+    btnM.addEventListener('click', e => {
+        event.preventDefault();
+        
+        const id= document.querySelector('#id').value;
+        const postIntro = document.querySelector('#postIntro').value;
+        
+        const result = confirm('변경?')
+        if(result){
+            mForm.action='/post/postIntroUpdate';
+            mForm.method='post';
+            mForm.submit();
+            
+        }
+        
+        
+    });
     </script>
     
   <script>

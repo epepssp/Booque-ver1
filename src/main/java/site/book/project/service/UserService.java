@@ -156,6 +156,7 @@ public class UserService {
     	
     	user.setFileName(fileName);
     	user.setFilePath(imageFilePath+"/"+fileName);
+    	user.setUserImage("/view/"+fileName);
     	
     	userRepository.save(user);
     	log.info("fileName={}", fileName);

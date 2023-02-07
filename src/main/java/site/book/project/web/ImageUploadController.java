@@ -14,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import site.book.project.domain.User;
+import site.book.project.dto.ReplyUpdateDto;
 import site.book.project.dto.UserSecurityDto;
 import site.book.project.repository.UserRepository;
 import site.book.project.service.UserService;
@@ -31,6 +33,7 @@ import site.book.project.service.UserService;
 public class ImageUploadController {
     
     private final UserService userService;
+    private final UserRepository userRepository;
  
     
     @Value("${site.book.upload.path}") // (예진) 이미지 저장할 로컬 폴더 
@@ -69,7 +72,7 @@ public class ImageUploadController {
        
         return ResponseEntity.ok().headers(headers).body(resource);
     }
-    
+  
     
 }
 

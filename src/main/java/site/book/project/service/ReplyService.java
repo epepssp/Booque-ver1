@@ -96,5 +96,11 @@ public class ReplyService {
     public void deletePostIdWithAllReply(Integer postId) {
         replyRepository.deletePostIdwithdAllReply(postId);
     }
+    
+    public PostReply readRep(Integer replyId) {
+       PostReply reply = replyRepository.findById(replyId).get();
+       
+       return reply;
+    }
 }
 

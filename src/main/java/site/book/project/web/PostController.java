@@ -231,18 +231,28 @@ public class PostController {
         log.info("CurrentUrl ={}", referer);
         String urlTemp = referer.toString().substring(21);  // localhost:8888 뒷 부분만 잘라냄
         log.info("urlTemp ={}", urlTemp);  
-               
-        User userTemp = userService.read(id);
-              
-        log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
-        userTemp.setUserImage("/view/"+file.getOriginalFilename());  
-        log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
-            
-        userRepository.save(userTemp);
-        
+
+
         userService.write(id, file);
         
         return "redirect:"+urlTemp;  // 현재 페이지로 리다이렉트 
+    }
+    
+    @PostMapping("/postIntroUpdate")  // (예진) postIntro 수정
+    public String postIntroUpdate(Integer id, String postIntro, HttpServletRequest request) {
+         log.info("포스트인트로!={} : {}",id,postIntro);
+        
+         String referer = request.getHeader("referer");  
+         String urlTemp = referer.toString().substring(21);  
+        
+        User user = userService.read(id);
+        log.info("변경 전: 포스트인트로 ={}", user.getPostIntro());
+        user.setPostIntro(postIntro);
+        log.info("변경 후: 포스트인트로 ={}", user.getPostIntro());
+        
+        userRepository.save(user);
+        
+        return "redirect:"+urlTemp;
     }
    
    
