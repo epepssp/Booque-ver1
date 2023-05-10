@@ -73,7 +73,7 @@
     }
 ```
 
-#### Read
+2. Read
 
 > PostController.java 일부
 
@@ -126,7 +126,7 @@
 ```
 
 
-#### Update/Delete
+3. Update/Delete
 
 > PostController.java 일부
 
