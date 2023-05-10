@@ -267,7 +267,7 @@
     <tbody>
         <tr th:each="post : ${ list }">
             <td class="py-5" style="cursor: pointer;" th:onclick="|location.href='@{ /post/detail?postId={postId}&bookId={bookId} (postId = ${ post.postId }, bookId = ${ post.bookId } )}'|">
-                <!-- haeun test -->
+             
                 <div>
                     <span th:text="${ post.postId }"></span>
                     <strong><a th:href="@{ /post/detail?postId={postId}&bookId={bookId} (postId = ${ post.postId }, bookId = ${ post.bookId } )}" th:text="${ post.title }" th:postId="${post.postId}" th:username="${#authentication.name}" onclick="postHitCountUp(this.getAttribute('postId'), this.getAttribute('username'));"></a></strong>
