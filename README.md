@@ -316,5 +316,20 @@
 ```java
 ```
 
+> list.html 일부
+
+```html
+         <!-- 예진:  오늘 작성한 글 new 아이콘 보여주기 -->
+          <span th:if="${ day } == ${ #temporals.format(post.createdTime, 'dd') }">
+               <span><img class="blink" src="/images/new.png" width="50" height="50" ></span>
+          </span>
+```
 
 #### 댓글 10 이상 게시글에 ‘HOT’ 아이콘 추가
+
+```html
+         <!-- 예진: 댓글 수 10개 이상인 글 hot 아이콘 보여주기 -->
+         <span th:if="${ post.replyCount } > 9 ">
+              <span><img class="blink" src="/images/promotional.png" width="50" height="40" ></span>
+         </span>
+```
