@@ -16,7 +16,7 @@
 ### 블로그
 
 + 블로그 게시글(도서 리뷰) CRUD 기능
- + Create 
+  + Create 
 
 > BookDetailController.java 일부
 
