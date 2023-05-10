@@ -1,4 +1,3 @@
-# MyGit
 # 📚Booque ver1
 
 ## 개요
