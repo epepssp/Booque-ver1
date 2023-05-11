@@ -71,7 +71,7 @@
     }
 ```
 
-2. Read
+  - Read
 
 > PostController.java 일부
 
