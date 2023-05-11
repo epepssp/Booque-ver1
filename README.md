@@ -13,7 +13,7 @@
 
 ## 구현 기능
 
-+ 블로그 게시글(도서 리뷰) CRUD 기능
++ 블로그 리뷰 게시글 CRUD 기능
   - Create 
 
 > BookDetailController.java 일부
