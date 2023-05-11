@@ -1,4 +1,5 @@
 # Booque-ver1
+![booque_logo](https://github.com/epepssp/MyGit/assets/118948099/0ad8d0b0-6d41-4c17-aaa0-923289eb4728)
 
 ## 개요
 **일정** 2022년 11월 21일 ~ 2022년 12월 23일<br>
