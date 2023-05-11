@@ -3,6 +3,7 @@
 <p align="center"><img width="350" alt="logo-1" src="https://github.com/epepssp/MyGit/assets/118948099/185aeec0-2bdc-4f79-8e0f-f9378d41c1c8"></p>
 
 ## 개요
+아이티윌 자바 134기 <진정혜>
 **일정** 2022년 11월 21일 ~ 2022년 12월 23일<br>
 **인원** 6인 팀 프로젝트
 
