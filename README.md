@@ -1,6 +1,6 @@
 # 📚 Booque ver1
 <p align="center"><img width="300" alt="booque_logo" src="https://github.com/epepssp/Booque-ver1/assets/118948099/c3f7fd4a-37ec-417d-ab0f-361c3f9aee0b"></p>
-<p align="center"><img width="300" alt="logo-1" src="https://github.com/epepssp/MyGit/assets/118948099/185aeec0-2bdc-4f79-8e0f-f9378d41c1c8"></p>
+<p align="center"><img width="300"  alt="부끄1" src="https://github.com/epepssp/Booque-ver1/assets/118948099/8a1b6368-f53d-4896-b42a-3f63fd08c2fd"></p>
    <br>
    
 ## 개요
