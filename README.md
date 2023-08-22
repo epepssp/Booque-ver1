@@ -35,7 +35,7 @@
 <br>
 
 ## 나의 구현 기능
-💡 블로그(Post) CRUD 기능
+💡 **블로그(Post) CRUD 기능**
   + #### Create 
 
   > BookDetailController.java 일부
@@ -148,7 +148,7 @@
    ```
   <br>
   
-💡 게시판 API(Summernote) 이용한 다양한 Editor 기능 ⭐
+💡 **게시판 API(Summernote) 이용한 다양한 Editor 기능**
 <br>
 <div align="center"><img src="https://github.com/epepssp/test/assets/118948099/0cf55421-b7b9-49db-be7a-aeaa80965347" width="700" height="450" alt="뿌끄1에디터15"></div>
 <br>
@@ -184,7 +184,7 @@
    ```
    <br>
 
-  💡 post - create.html / detail.html / modify.html / list.html 작성
+  💡 **post HTML (create, detail, modify.html, list.html)**
 
   - #### html 왼쪽 프로필 영역 - 모두 공통 
   ```html
@@ -267,7 +267,7 @@
    ```
    <br>
 
- 💡 블로그 방문 가능한 경우의 수 - 총 4가지  ⭐ 
+ 💡 **블로그 방문 가능한 경우의 수 - 총 4가지** 
 <br>
 <div align="center">    
 <img style="display: inline-block;" width="380" alt="경우1" src="https://github.com/epepssp/test/assets/118948099/d5549c0b-a3b1-43a0-9cbc-85a10d905593">
@@ -313,7 +313,7 @@
    
    <br>
 
-   💡 아이콘 추가 
+   💡 **아이콘 추가** 
    - #### NEW 아이콘 추가 
 
    > PostController.java  
