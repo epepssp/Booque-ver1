@@ -278,7 +278,7 @@
 <div align="center" style="font-size:8px;">클릭시 커짐</div>
 <br>
 
-  + ##### @AuthenticationPrincipal(애너테이션) 이용하여 로그인 유저 찾기 -> PostWriter와 비교 -> 총 4가지 경우에 따라 상단바와 블로그 유저는 다를 수 있음을 고려 
+  + ##### @AuthenticationPrincipal(애너테이션) 이용하여 로그인 유저 찾기 -> PostWriter와 비교 -> 4가지 경우에 따라 상단바와 블로그 유저는 다를 수 있음을 고려 
   
     - 1. 로그인 하지 않아도 리뷰 클릭해서 다른 유저 블로그 방문 가능
     - 2. 로그인 한 상태에서 리뷰 클릭해서 다른 유저 블로그 방문 가능
