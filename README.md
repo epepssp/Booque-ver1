@@ -186,7 +186,7 @@
 
   + ### post - create.html / detail.html / modify.html / list.html 작성
 
-  + #### html 왼쪽 프로필 영역 - 모두 공통 
+  - #### html 왼쪽 프로필 영역 - 모두 공통 
   ```html
 
          <div class="col-2"><!-- 메인 왼쪽: 프로필 영역 start -->
@@ -314,7 +314,7 @@
    <br>
 
    + ### 아이콘 추가 
-   + #### NEW 아이콘 추가 
+   - #### NEW 아이콘 추가 
 
    > PostController.java  
    ```java
@@ -326,7 +326,7 @@
         model.addAttribute("day", day);
    ```
 
-   + #### HOT 아이콘 추가
+   - #### HOT 아이콘 추가
      
    > PostService
  
@@ -362,7 +362,7 @@
         }
    ```
 
-   + #### Blink Effect
+   - #### Blink Effect
    > list.html
    ```html
 
