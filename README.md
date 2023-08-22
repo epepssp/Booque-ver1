@@ -267,7 +267,7 @@
    ```
    <br>
 
- 💡 **블로그 방문 가능한 경우의 수 - 총 4가지** 
+ 💡 **상단바/블로그 유저 경우의 수 - 총 4가지** 
 <br>
 <div align="center">    
 <img style="display: inline-block;" width="380" alt="경우1" src="https://github.com/epepssp/test/assets/118948099/d5549c0b-a3b1-43a0-9cbc-85a10d905593">
