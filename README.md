@@ -184,7 +184,7 @@
    ```
    <br>
 
-  💡 **post HTML (create, detail, modify.html, list.html)**
+  💡 **POST HTML 파일 작성(create, detail, modify.html, list.html)**
 
   - #### html 왼쪽 프로필 영역 - 모두 공통 
   ```html
