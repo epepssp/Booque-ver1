@@ -313,8 +313,8 @@
    
    <br>
 
-   + ### 아이콘 추가 + Blink Effect
-   + #### NEW 아이콘 추가 
+   + ### 아이콘 추가 
+     + #### NEW 아이콘 추가 
 
    > PostController.java  
    ```java
@@ -326,7 +326,8 @@
         model.addAttribute("day", day);
    ```
 
-   + #### HOT 아이콘 추가
+     + #### HOT 아이콘 추가
+     
    > PostService
  
    ```service
