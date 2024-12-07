@@ -63,9 +63,9 @@
     
     <div class="card mx-2 my-2" style="width: 20rem; height:auto;">    
         <a th:href="@{ /myPage }"> <!-- 프로필 사진 클릭하면 마이페이지로 이동 -->
-           <img th:src="${ user.userImage }" width="220px" height="280" class="img-fluid rounded-start">
+           <span id="divProfileImage"></span><!-- (예진) 프로필 이미지-->
         </a>       
-         
+          
          
         <div class="card-body" style="text-align: left;">
                 <div class="border-bottom mb-2 border-dark">
@@ -78,6 +78,13 @@
                 <!-- -<span style="color:gray;">전체 리뷰수</span>
                 <span class="h4"><strong style="color:red;">리뷰수 합쳐야함</strong></span> -->
     
+            <!--(예진) 프로필 이미지 업로드 폼 -->
+            <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate">
+                <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
+                <input type="file" name="file" id="file"/>
+                <div class="btn btn-outline-secondary" style="width: 40px; height: 15px;" id="btnProfileUpdate">프로필 수정</div> 
+            </form>
+
             
             <br/><br/>
             <div class="fw-bold" style="text-align: left;">요즘 뜨는 포스트 </div>
@@ -114,41 +121,14 @@
         </div><!-- 유저사진 밑에 카드 형식으로 넣음 -->
     
     </div><!-- 프로필 블록 end -->
-</div>
+</div>  
 
-
-        <span class="profileUpdate" ><!--(예진) 프로필 변경(수정) -->
-          설정 
-        </span>  
-   
-
-        <div class="profile-img-wrap story-border"  >
-        
-          <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate"  >
-                <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
-                <input type="file" name="file" id="file" />
-            
-                <div class="col-4 mx-2 py-3 btn border rounded-4 btn-primary" id="btnProfileUpdate">
-                <span id="btnb" >수정</span>
-                  
-                </div> 
-          </form>
-          
-         
-             <div id="divProfileImage"></div>
-                  
-              <img th:src="${ user.userImage }"  width=100px; height=150px/>
-              <div id="divImage">
-                  <img th:src="${user.filePath}" width=100px; height=150px />
-                  </div>
-                   <img th:src="@{${user.filePath}}" width=100px; height=150px />
+       <div class="profile-img-wrap story-border">
+                  <img th:src="${ user.userImage }"  width=100px height=150px />
+                  <img th:src="${user.filePath}" width=100px height=150px />
+                  <img th:src="@{${user.filePath}}" width=100px height=150px />
         </div>
-        
-         <div onclick="down()">
-              <input type="hidden" id="filePath" name="filePath" th:value="${ user.filePath }"/>다운로드
-         </div><!--(예진) 프로필 변경 end-->
-     
-     
+         
 <div class="col-10">
     
     <!-- 최근에 본 책 간단 정보 -->

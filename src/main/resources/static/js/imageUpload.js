@@ -3,14 +3,12 @@
  */
 
 window.addEventListener('DOMContentLoaded', () => {
-    
+    // (예진)
     showImage();
     
      function showImage() {
         
         const id = document.querySelector('#id').value;
-        console.log("쇼이미지 처음");
-        console.log(id);
         
         axios
         .get('/updateImage/' + id)  
@@ -24,8 +22,8 @@ window.addEventListener('DOMContentLoaded', () => {
        const divProfileImage = document.querySelector('#divProfileImage');
    
        let str='';
-   
-           str +=`<img class="profile-image" th:src="${data.filePath}" id="profileImage" width=100px; height=150px/>`;
+
+           str +=   `<img class="img-fluid rounded-start" src="${data.userImage}" id="profileImage" width="150px" height="200"/>`;
        divProfileImage.innerHTML = str;
    };
  

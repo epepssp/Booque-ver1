@@ -34,7 +34,7 @@ import site.book.project.dto.PostCreateDto;
 import site.book.project.dto.PostListDto;
 import site.book.project.dto.PostReadDto;
 import site.book.project.dto.PostUpdateDto;
-import site.book.project.dto.UserProfileDto;
+
 import site.book.project.dto.UserSecurityDto;
 import site.book.project.repository.UserRepository;
 import site.book.project.service.BookService;
@@ -219,18 +219,18 @@ public class PostController {
 //      return "message";
 //    }
     
-    @PostMapping("/profile/imageUpdate")  // update profileImage 
+    
+    // (예진) 프로필 이미지 업로드
+    @PostMapping("/profile/imageUpdate")  
     public String profileImageUpdate(Integer id, MultipartFile file, HttpServletRequest request) throws Exception{
         
-        String referer = request.getHeader("referer");
+        String referer = request.getHeader("referer");  // 현재 페이지 주소
         log.info("CurrentUrl ={}", referer);
-        String urlTemp = referer.toString().substring(21);
-        log.info("urlTemp ={}", urlTemp);
-        
-        
-        User userTemp = userService.read(id);  // 현재 로그인 한 유저
-        
-        
+        String urlTemp = referer.toString().substring(21);  // localhost:8888 뒷 부분만 잘라냄
+        log.info("urlTemp ={}", urlTemp);  
+               
+        User userTemp = userService.read(id);
+              
         log.info("변경 전: userTemp.getUserImage ={}", userTemp.getUserImage());
         userTemp.setUserImage("/files/"+file.getOriginalFilename());  
         log.info("변경 후: userTemp.getUserImage ={}", userTemp.getUserImage());
@@ -239,35 +239,9 @@ public class PostController {
         
         userService.write(id, file);
         
-        return "redirect:"+urlTemp;
+        return "redirect:"+urlTemp;  // 현재 페이지로 리다이렉트 
     }
    
-  
-    
-//    @PostMapping("/profile/imageUpdate")
-//   public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto userSecurityDto, UserProfileDto dto) {
-//              Integer userId = userSecurityDto.getId();
-//       log.info("!!profileDt={}",dto);
-//       dto.setId(userId);
-//        log.info("profileImageUpdate: userId={} userImage={}", dto.getId(), dto.getUserImage());
-//       userService.updateProfileImage(dto);
-//        return "redirect:/post/list";
-//    }
-    
-//    @PostMapping("/profile/imageUpdate")
-//    public String profileImageUpdate(@AuthenticationPrincipal UserSecurityDto  userSecurityDto, UserProfileDto dto,
-//                            @RequestParam("filePath") MultipartFile file) throws IllegalStateException, IOException {
-//
-//      log.info("FFFFFilePath={}",file.getOriginalFilename());
-//
-//     
-//      userService.modifyUserImage(userSecurityDto.getId(), dto, file);
-//        
-//        
-//        
-//        
-//        return "redirect:/post/list";
-//    }
    
    
 }

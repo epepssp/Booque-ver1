@@ -31,23 +31,15 @@
         <div class="col-2 m-4 p-2" style="height:800px;">
                 <div class="card" align="left" style="margin:20px; width: 200px; "><!-- 프로필  -->
 
-                  <div>
-                         <img th:src="${ user.userImage}"  alt="..."  width="200px" height="280px" class="img-fluid rounded-start">
-                    </div>
+                  <div id="divProfileImage"></div><!-- (예진)프로필 이미지 -->
+                  
+                    <!--(예진) 프로필 이미지 업로드 폼 -->
                     <form id="profileForm" enctype="multipart/form-data" method="post" action="/post/profile/imageUpdate">
-                         <label for="filePath" >
-                            <span>프로필</span>
-                            <img style="width: 15px; height: 15px;" alt="" th:src="@{ https://cdn-icons-png.flaticon.com/512/738/738853.png }">
-                         </label >
-                          <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
-                         <input type="file" id="userImage" name="file"  > 
-                         
-                         <label for="imageModify" >
-                            <img style="width: 15px; height: 15px;" alt="" th:src="@{ https://cdn-icons-png.flaticon.com/512/738/738853.png }">
-                         </label >
-                         <button class="col-4 mx-2 py-3 btn border rounded-4 btn-primary" id="btnProfileUpdate">수 정</button> 
-
+                         <input type="hidden" id="id" name="id" th:value="${ user.id }"/>
+                         <input type="file" id="userImage" name="file" /> 
+                         <button class="col-7 mx-1 btn border rounded-4" id="btnProfileUpdate">프로필수정</button> 
                     </form>
+                    
               <a class="btn btn-outline-secondary" th:href="@{ /post/list?postWriter={postWriter} (postWriter = ${ user.username })}">내 블로그
               <img style="width: 18px" alt="" src="https://cdn-icons-png.flaticon.com/512/609/609803.png">  </a>
           
@@ -309,7 +301,7 @@
     
       
   
-
+     <script th:src="@{ /js/imageUpload.js }"></script>
     <script type="text/javascript">
     
     
@@ -369,38 +361,7 @@
     
     
     
-    
-    const profileForm = document.querySelector('#profileForm');
-    const btnProfileUpdate = document.querySelector('#btnProfileUpdate');
    
-    btnProfileUpdate.addEventListener('click', e => {
-    	
-        const result = confirm('사진 변경?')
-       if(result) {
-    		profileForm.action = '/post/profile/imageUpdate';
-    		profileForm.method= 'post';
-    		profileForm.submit();
-        }
-        
-    })
-    
-    
-
-    
-    const formP = document.querySelector('#profileM')
-    const btnModify = document.querySelector('#modify')
-    
-    btnModify.addEventListener('click', e => {
-        const result = confirm('회원정보 변경?')
-        if(result){
-            formP.action='/myPage/modify';
-            formP.method='post';
-            formP.submit();
-            
-        }
-        
-        
-    })
     
 
     

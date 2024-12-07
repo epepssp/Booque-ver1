@@ -35,8 +35,8 @@
 
     <div class="card mx-2 my-2" style="width: 20rem; height:auto;">    
         <a th:href="@{ /myPage }"> <!-- 프로필 사진 클릭하면 마이페이지로 이동 -->
-       <img th:src="${ user.userImage }" width="200" height="280" class="img-fluid rounded-start">
-    </a>
+           <span id="divProfileImage"></span><!-- (예진) 프로필 이미지-->
+        </a>     
         <div class="card-body" style="text-align: left;">
             <div class="border-bottom mb-2 border-dark">
                 <span class="card-title" th:text="${ '&nbsp;&nbsp;'+ user.nickName }" style="font-weight: bold;"></span>
